@@ -84,3 +84,38 @@ function updateCurrentText() {
 }
 
 createCards();
+
+// Event Listeners
+// clicking on the next button increases the active card index by 1
+// card left will give the effect of card sliding in
+// className replaces whichever classes currently exist
+// this changes the current card to left before going onto a new current card
+// then we get the new current card index and set the class for that to be card active
+nextBtn.addEventListener('click', () => {
+  cardsEl[currentActiveCard].className = 'card left';
+
+  currentActiveCard = currentActiveCard + 1;
+
+  if(currentActiveCard > cardsEl.length - 1) {
+    currentActiveCard = cardsEl.length - 1;
+  }
+
+  cardsEl[currentActiveCard].className = 'card active';
+
+  updateCurrentText();
+});
+
+// same as nextBtn, but class name in index are slightly different
+prevBtn.addEventListener('click', () => {
+  cardsEl[currentActiveCard].className = 'card right';
+
+  currentActiveCard = currentActiveCard - 1;
+
+  if(currentActiveCard < 0) {
+    currentActiveCard = 0;
+  }
+
+  cardsEl[currentActiveCard].className = 'card active';
+
+  updateCurrentText();
+});
